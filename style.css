@@ -1,0 +1,204 @@
+html, body {
+    overflow: visible;
+    transform-style: preserve-3d;
+    backface-visibility: visible;
+  }
+
+/* Estilo básico para a página */
+body {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #000000; /* Fundo suave rosa claro */
+    font-family: Arial, sans-serif;
+    z-index: 0;
+  }
+  
+  .container {
+    text-align: center;
+    perspective: 1200px; /* Aumenta a profundidade da rotação 3D */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  /* Envelope */
+  .envelope {
+    margin: 100px auto;
+    position: relative;
+    width: 400px; /* Aumentado para parecer maior */
+    height: 250px;
+    background: linear-gradient(135deg, #ac7493, #ff8fb1); /* Gradiente rosa elegante */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    overflow: hidden;
+    left: -211px;
+    z-index: 1;
+  }
+  
+ 
+
+  /* Aba superior do envelope */
+  .top-flap {
+    position: relative;
+    width: 400px;
+    height: 250px;
+    background: linear-gradient(135deg, #f7add5, #ec88a1); /* Gradiente suave */
+    bottom: 0;
+    clip-path: polygon(0 0, 50% 60%, 100% 0); /* Corrigido para parecer com um envelope */
+    z-index: 10;
+    transform-origin: top center; /* Ponto de rotação correto */
+    transition: transform 0.6s ease;
+    backface-visibility: hidden;
+    right: -5cm;
+    transform-style: preserve-3d;
+  }
+
+  .bottom-flap{
+    position: absolute;
+  width: 100%;
+  height: 50%;
+  background: linear-gradient(135deg, #f7add5, #ec88a1); /* Gradiente invertido */
+  bottom: 0; /* Posicionada na parte inferior */
+  clip-path: polygon(0 100%, 50% 0, 100% 100%);
+  z-index: 10       ; /* Sobrepõe o corpo */}
+
+  .left-flap {
+    position: absolute;
+    left: 0;
+    width: 200px;
+    height: 100%;
+    background: linear-gradient(135deg, #f7add5, #ec88a1);
+    clip-path: polygon(0 0, 100% 50%, 0 100%);
+    z-index: 10;
+    /* etc */
+  }
+  
+  .right-flap {
+    position: absolute;
+    right: 0;
+    width: 200px;
+    height: 100%;
+    background: linear-gradient(135deg, #f7add5, #ec88a1);
+    clip-path: polygon(100% 0, 0 50%, 100% 100%);
+    z-index: 10;
+
+  }
+  
+
+    /* Botões */
+       
+    .button {
+        position: absolute; /* Posiciona no canto inferior */
+        bottom: 100px; /* Distância da borda inferior */
+        left: 50%; /* Centraliza horizontalmente */
+        transform: translateX(-50%); /* Ajusta para que fique perfeitamente centralizado */
+        text-align: center; /* Garante alinhamento central */
+          margin-top: 20px;
+          text-align: center; /* Centraliza os botões */
+          word-spacing: 25px;    
+        /* Estilo básico dos botões */
+        button {
+          padding: 20px 50px;
+          font-size: 20px;
+          border: none;
+          border-radius: 25px; /* Bordas arredondadas */
+          background: linear-gradient(135deg, #ff7f7f, #ff4f4f); /* Gradiente rosa */
+          color: white;
+          cursor: pointer; /* Exibe a mãozinha */
+          transition: background 0.3s ease, transform 0.3s ease; /* Animação ao passar o mouse */
+        }
+        
+        /* Estilo ao passar o mouse */
+        button:hover {
+          background: linear-gradient(135deg, #ff4f4f, #cf3838); /* Gradiente mais escuro ao passar o mouse */
+          transform: scale(1.05); /* Aumenta ligeiramente o tamanho */
+        }
+        }
+
+        .note {
+            position: absolute;
+            top: 43%;
+            left: 50%;
+            transform: translate(-50%, -50%) translateY(100px);
+            opacity: 0;
+            background: white;
+            padding: 20px 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: transform 1s ease, opacity 1s ease;
+            backface-visibility: hidden;
+            z-index: 1;
+          }
+          .envelope.open .note {
+            transform: translate(-50%, -50%) translateY(-30px);
+            opacity: 1;
+          }
+          
+
+          
+          @keyframes floatUp {
+            0% {
+              transform: translateY(0) scale(1);
+              opacity: 1;
+            }
+            100% {
+              transform: translateY(-200px) scale(1.5);
+              opacity: 0;
+            }
+          }
+          
+          .heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: #ff4f4f;
+            transform: rotate(45deg);
+            animation: floatUp 3s ease-in-out forwards;
+            opacity: 0;
+          }
+          
+          .heart::before,
+          .heart::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: #ff4f4f;
+            border-radius: 50%;
+          }
+          
+          .heart::before {
+            top: -10px;
+            left: 0;
+          }
+          
+          .heart::after {
+            left: -10px;
+            top: 0;
+          }
+          
+
+          .music-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 12px 20px;
+            font-size: 16px;
+            background: linear-gradient(135deg, #f48fb1, #f06292);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            z-index: 1000;
+          }
+          
+          .music-button:hover {
+            transform: scale(1.05);
+            background: linear-gradient(135deg, #ec407a, #d81b60);
+          }
+          
